@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 const validateProjectName = require('validate-npm-package-name')
 
-function checkAppName(appName) {
+function checkAppNameCanBeUsed(appName) {
   const validationResult = validateProjectName(appName);
   if(!validationResult.validForNewPackages) {
     console.error(
@@ -23,6 +23,6 @@ function printValidationResults(results) {
 }
 
 module.exports = {
-  checkAppName,
+  checkAppNameCanBeUsed,
   printValidationResults
 }

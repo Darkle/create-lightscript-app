@@ -23,7 +23,8 @@
     "create-lightscript-app": "./index.js"
   },
   "devDependencies": {
-    "eslint": "^5.6.0"
+    "eslint": "^5.6.0",
+    "eslint_d": "^7.1.1"
   },
   "dependencies": {
     "chalk": "^2.4.1",
