@@ -8,11 +8,9 @@ function generateProjectPackageJson(node, nodeandweb, webpack){
     version: '0.1.0',
     description: "Minimal skeleton for a LightScript app",
     private: true,
-    ...{
-      "scripts": {
-        ...genarateScripts(node, nodeandweb, webpack),
-        "lint": "eslint --ext .js,.lsc src"
-      }
+    scripts: {
+      ...genarateScripts(node, nodeandweb, webpack),
+      lint: 'eslint --ext .js,.lsc src'
     }
   }
 }
