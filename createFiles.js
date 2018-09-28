@@ -12,7 +12,7 @@ function createFiles(cwd, {node, nodeandweb, webpack}, appName) {
   const serverTemplateFolderSrcPath = pJoin(templateFolderPath, 'server')
   const serverIndexJsWritePath = pJoin(cwd, 'src', (nodeandweb ? 'server': ''), 'index.lsc')
   const frontendIndexJsWritePath = pJoin(cwd, 'src', (nodeandweb ? 'frontend': ''), 'index.lsc')
-  const projectPackageJson = generateProjectPackageJson(node, nodeandweb, webpack, serverIndexJsWritePath)
+  const projectPackageJson = generateProjectPackageJson(node, nodeandweb, webpack)
 
   fs.writeJSONSync(pJoin(cwd, 'package.json'), {...projectPackageJson, name: appName}, {spaces: 2})
   fs.outputFileSync(pJoin(cwd, '.gitattributes'), '*.lsc linguist-language=javascript')
