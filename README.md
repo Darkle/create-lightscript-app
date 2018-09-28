@@ -4,6 +4,6 @@ This will create a minimal skeleton for a LightScript app. It supports creating 
 
 To create a LightScript skeleton for the web, run `npm init lightscript-app my-app-name`
 
-To create a LightScript skeleton for the server, run `npm init lightscript-app my-app-name --server`
+To create a LightScript skeleton for the server, run `npm init lightscript-app my-app-name --node`
 
-To create a LightScript skeleton for an app that has both server js and web js, run `npm init lightscript-app my-app-name --serverandweb`
+To create a LightScript skeleton for an app that has both server js and web js, run `npm init lightscript-app my-app-name --nodeandweb`
