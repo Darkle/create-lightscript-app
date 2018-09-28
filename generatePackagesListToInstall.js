@@ -19,6 +19,10 @@ const baseFrontendPackages = [
   'less',
 ]
 
+const baseBackendPackages = [
+  'nodemon'
+]
+
 const baseRollupPackages = [
   'rollup',
   'rollup-plugin-babel',
@@ -38,15 +42,16 @@ const webpackFrontendPackages = [
   'postcss-loader',
 ]
 
-const generatePackagesListToInstall = ({node, webpack}) =>
+const generatePackagesListToInstall = ({node, webpack, nodeandweb}) =>
   [
     ...basePackagesToInstall,
     ...webpack ? baseWebpackPackages : baseRollupPackages,
-    ...node ? [] :
-      [
+    ...node || nodeandweb ? baseBackendPackages : [],
+    ...!node ? [
       ...baseFrontendPackages,
       ...webpack ? webpackFrontendPackages : rollupFrontendPackages
       ]
+      : []
   ]
 
 module.exports = {

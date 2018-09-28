@@ -1,44 +1,48 @@
-
 const crossEnvDev = 'cross-env NODE_ENV=development'
 const crossEnvProd = 'cross-env NODE_ENV=production'
 
-const genarateScripts = (node, nodeandweb, compiler) => {
+const genarateScripts = (node, nodeandweb, webpack, serverIndexJsPath) => {
+  const compiler = webpack ? 'webpack' : 'rollup'
+  const serverBuildScript = `--config ${compiler}.config.server.js`
+  const webBuildScript = `--config ${compiler}.config.web.js`
+  const nodeOrWebBuildScript = node ? serverBuildScript : webBuildScript
+
   if(nodeandweb){
     return {
-      'watch:server': `${ crossEnvDev } ${compiler} --config ${compiler}.config.server.js -w`,
-      'watch:web': `${ crossEnvDev } ${compiler} --config ${compiler}.config.web.js -w`,
-      'build:dev': `${ crossEnvDev } ${compiler} --config ${compiler}.config.server.js && ${ crossEnvDev } ${compiler} --config ${compiler}.config.web.js`,
-      'build:prod': `${ crossEnvProd } ${compiler} --config ${compiler}.config.server.js && ${ crossEnvProd } ${compiler} --config ${compiler}.config.web.js`,
+      'watch:server': `${ crossEnvDev } ${compiler} ${serverBuildScript} -w`,
+      'watch:web': `${ crossEnvDev } ${compiler} ${webBuildScript} -w`,
+      'build:dev': `${ crossEnvDev } ${compiler} ${serverBuildScript} && ${ crossEnvDev } ${compiler} ${webBuildScript}`,
+      'build:prod': `${ crossEnvProd } ${compiler} ${serverBuildScript} && ${ crossEnvProd } ${compiler} ${webBuildScript}`,
+      'nodemon': `nodemon ${serverIndexJsPath}`,
       'bs': ``,//TODO
-      'start': ''//TODO - this will need to be npm-run-all and run both watchs and then start browsersync
+      'start': 'npm-run-all --parallel --continue-on-error watch:* nodemon bs'
     }
   }
-  const target = node ? 'server' : 'web'
+  //node or web
   return {
-    'watch': `${ crossEnvDev } ${compiler} --config ${compiler}.config.${target}.js -w`,
-    'build:dev': `${ crossEnvDev } ${compiler} --config ${compiler}.config.${target}.js`,
-    'build:prod': `${ crossEnvProd } ${compiler} --config ${compiler}.config.${target}.js`,
-    ...!node ? {'bs': ``} : {},//TODO
-    'start': node ? 'node src/index.js' : '',//TODO - this will need to be npm-run-all and run watch and then start browsersync
+    'watch': `${ crossEnvDev } ${compiler} ${nodeOrWebBuildScript} -w`,
+    'build:dev': `${ crossEnvDev } ${compiler} ${nodeOrWebBuildScript}`,
+    'build:prod': `${ crossEnvProd } ${compiler} ${nodeOrWebBuildScript}`,
+    ...!node ? {'bs': ``} : {}, //TODO
+    'start': node ?
+      `nodemon ${serverIndexJsPath}` :
+      'npm-run-all --parallel --continue-on-error watch bs'
   }
 }
 
-const generateProjectPackageJson = ({node, webpack, nodeandweb}) => {
-  const compiler = webpack ? 'webpack' : 'rollup'
-  return {
+const generateProjectPackageJson = (node, nodeandweb, webpack) =>
+  ({
     version: '0.1.0',
     description: "Minimal skeleton for a LightScript app",
     private: true,
-    ...node ? {main: "src/index.js"} : {},
-    ...nodeandweb ? {main: "src/server/index.js"} : {},
     ...{
       "scripts": {
-        ...genarateScripts(node, nodeandweb, compiler),
+        ...genarateScripts(node, nodeandweb, webpack),
         "lint": "eslint --ext .js,.lsc src"
       }
     }
-  }
-}
+  })
+
 
 module.exports = {
   generateProjectPackageJson
