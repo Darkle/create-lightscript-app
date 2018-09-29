@@ -1,9 +1,24 @@
 # create-lightscript-app
 
-This will create a minimal skeleton for a LightScript app. It supports creating a skeleton app for the web (default) or on the server or both.
+This will create a minimal skeleton for a [LightScript](https://wcjohnson.github.io/lightscript/docs/) app.
 
-To create a LightScript skeleton for the web, run `npm init lightscript-app app-name`
+It supports creating a skeleton app for the web (default) or for the server or both.
 
-To create a LightScript skeleton for the server, run `npm init lightscript-app app-name --node`
+## Web
+* This is the default.
+* To create a LightScript skeleton for the web, run `npm init lightscript-app app-name`
+* The web skeleton includes [Browsersync](https://www.browsersync.io/) & [PostCSS](https://postcss.org/). PostCSS is set up so that you can use sass, less, stylus or regular css.
+* To start development, run `npm start`
 
-To create a LightScript skeleton for an app that has both server js and web js, run `npm init lightscript-app app-name --nodeandweb`
+## Node
+* To create a LightScript skeleton for the server, run `npm init lightscript-app app-name --node`
+* The node skeleton includes nodemon which will automatically restart the server on changes.
+* To start development, run `npm start`
+
+## Node And Web
+* To create a LightScript skeleton for an app for both the server the and web, run `npm init lightscript-app app-name --nodeandweb`
+* This skeleton inlcudes everything from both the Web and Node skeletons above.
+* To start development, run `npm start`
+
+## Rollup and Webppack
+* By default the skeletons will use [Rollup](https://rollupjs.org) to transpile code. If you want to use Webpack instead, use the `--webpack` flag. e.g. `npm init lightscript-app app-name --webpack`
