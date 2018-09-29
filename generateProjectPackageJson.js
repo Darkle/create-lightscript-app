@@ -30,7 +30,7 @@ function genarateScripts(node, nodeandweb, webpack) {
       'build:dev': `${crossEnvDev} ${compiler} ${serverBuildScript} && ${crossEnvDev} ${compiler} ${webBuildScript}`,
       'build:prod': `${crossEnvProd} ${compiler} ${serverBuildScript} && ${crossEnvProd} ${compiler} ${webBuildScript}`,
       'nodemon': `nodemon ${serverIndexJsPath}`,
-      'bs': `browser-sync start --server 'dist' --files 'dist'`,
+      'bs': `browser-sync start --server dist --files dist`,
       'start': 'npm-run-all build:dev --parallel --continue-on-error watch:* nodemon bs'
     }
   }
@@ -41,7 +41,7 @@ function genarateScripts(node, nodeandweb, webpack) {
     'build:prod': `${crossEnvProd} ${compiler} ${nodeOrWebBuildScript}`,
     ...node ?
       { "nodemon": `nodemon ${serverIndexJsPath}` } :
-      {'bs': `browser-sync start --server 'dist' --files 'dist'`}
+      {'bs': `browser-sync start --server dist --files dist`}
     ,
     'start': `npm-run-all build:dev --parallel --continue-on-error watch ${node ? 'nodemon' : 'bs'}`
   }
