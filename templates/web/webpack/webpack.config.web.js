@@ -1,7 +1,5 @@
 const path = require('path')
 
-const webpack = require('webpack')
-
 const projectDir = path.resolve(__dirname)
 const srcDir = path.join(projectDir, 'src')
 const distDir = path.join(projectDir, 'dist')

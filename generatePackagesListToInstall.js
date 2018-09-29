@@ -35,24 +35,45 @@ const rollupFrontendPackages = [
 ]
 
 const baseWebpackPackages = [
+  'babel-loader',
+  'webpack',
+  'webpack-cli',
+]
 
+const webpackBackendPackages = [
+  'webpack-node-externals'
 ]
 
 const webpackFrontendPackages = [
   'postcss-loader',
 ]
 
-const generatePackagesListToInstall = ({node, webpack, nodeandweb}) =>
-  [
-    ...basePackagesToInstall,
-    ...webpack ? baseWebpackPackages : baseRollupPackages,
-    ...node || nodeandweb ? baseBackendPackages : [],
-    ...!node ? [
-      ...baseFrontendPackages,
-      ...webpack ? webpackFrontendPackages : rollupFrontendPackages
-      ]
-      : []
-  ]
+function generatePackagesListToInstall({node, webpack, nodeandweb}){
+  let packagesToInstall = basePackagesToInstall
+  if (webpack){
+    packagesToInstall = packagesToInstall.concat(baseWebpackPackages)
+  }
+  else{
+    packagesToInstall = packagesToInstall.concat(baseRollupPackages)
+  }
+  if(node || nodeandweb){
+    packagesToInstall = packagesToInstall.concat(baseBackendPackages)
+    if(webpack){
+      packagesToInstall = packagesToInstall.concat(webpackBackendPackages)
+    }
+  }
+  if(!node){
+    packagesToInstall = packagesToInstall.concat(baseFrontendPackages)
+    if(webpack){
+      packagesToInstall = packagesToInstall.concat(webpackFrontendPackages)
+    }
+    else{
+      packagesToInstall = packagesToInstall.concat(rollupFrontendPackages)
+    }
+  }
+
+  return packagesToInstall
+}
 
 module.exports = {
   generatePackagesListToInstall
