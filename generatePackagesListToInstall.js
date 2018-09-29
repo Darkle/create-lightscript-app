@@ -46,6 +46,10 @@ const webpackBackendPackages = [
 
 const webpackFrontendPackages = [
   'postcss-loader',
+  'style-loader',
+  'css-loader',
+  'precss',
+  'autoprefixer',
 ]
 
 function generatePackagesListToInstall({node, webpack, nodeandweb}){

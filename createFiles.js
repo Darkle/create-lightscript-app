@@ -36,13 +36,15 @@ function createFiles(cwd, {node, nodeandweb, webpack}, appName) {
     fs.copySync(pJoin(nodeAndWebTemplateFolderSrcPath, compiler, '.babelrc.web.js'), pJoin(cwd, '.babelrc.web.js'))
     fs.copySync(pJoin(nodeAndWebTemplateFolderSrcPath, compiler, `${ compiler }.config.web.js`), pJoin(cwd, `${ compiler }.config.web.js`))
     fs.copySync(pJoin(nodeAndWebTemplateFolderSrcPath, 'styles', 'style.scss'), pJoin(cwd, 'src', 'frontend', 'styles', 'style.scss'))
+    fs.copySync(pJoin(nodeAndWebTemplateFolderSrcPath, compiler, 'postcss.config.js'), pJoin(cwd, 'postcss.config.js'))
   }
   else{ //web
     fs.copySync(pJoin(webTemplateFolderSrcPath, 'index.html'), pJoin(cwd, 'dist', 'index.html'))
     fs.copySync(pJoin(webTemplateFolderSrcPath, compiler, 'index.lsc'), frontendIndexJsWritePath)
     fs.copySync(pJoin(webTemplateFolderSrcPath, compiler, '.babelrc.web.js'), pJoin(cwd, '.babelrc.web.js'))
     fs.copySync(pJoin(webTemplateFolderSrcPath, compiler, `${ compiler }.config.web.js`), pJoin(cwd, `${ compiler }.config.web.js`))
-    fs.copySync(pJoin(nodeAndWebTemplateFolderSrcPath, 'styles', 'style.scss'), pJoin(cwd, 'src', 'styles', 'style.scss'))
+    fs.copySync(pJoin(webTemplateFolderSrcPath, 'styles', 'style.scss'), pJoin(cwd, 'src', 'styles', 'style.scss'))
+    fs.copySync(pJoin(webTemplateFolderSrcPath, compiler, 'postcss.config.js'), pJoin(cwd, 'postcss.config.js'))
   }
 }
 
