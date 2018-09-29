@@ -20,5 +20,5 @@ It supports creating a skeleton app for the web (default) or for the server or b
 * This skeleton inlcudes everything from both the Web and Node skeletons above.
 * To start development, run `npm start`
 
-## Rollup and Webppack
+## Rollup and Webpack
 * By default the skeletons will use [Rollup](https://rollupjs.org) to transpile code. If you want to use Webpack instead, use the `--webpack` flag. e.g. `npm init lightscript-app app-name --webpack`
