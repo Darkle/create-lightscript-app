@@ -12,7 +12,7 @@ It supports creating a skeleton app for the web (default) or for the server or b
 
 ## Node
 * To create a LightScript skeleton for the server, run `npm init lightscript-app app-name --node`
-* The node skeleton includes nodemon which will automatically restart the server on changes.
+* The node skeleton includes [nodemon](https://github.com/remy/nodemon#nodemon) which will automatically restart the server on changes.
 * To start development, run `npm start`
 
 ## Node And Web
