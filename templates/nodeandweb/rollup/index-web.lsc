@@ -1,2 +1,3 @@
+import './styles/style.scss'
 
 console.log('Hello from index.lsc in the Browser!')

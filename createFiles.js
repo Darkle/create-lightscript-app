@@ -35,12 +35,14 @@ function createFiles(cwd, {node, nodeandweb, webpack}, appName) {
     fs.copySync(pJoin(nodeAndWebTemplateFolderSrcPath, compiler, 'index-web.lsc'), frontendIndexJsWritePath)
     fs.copySync(pJoin(nodeAndWebTemplateFolderSrcPath, compiler, '.babelrc.web.js'), pJoin(cwd, '.babelrc.web.js'))
     fs.copySync(pJoin(nodeAndWebTemplateFolderSrcPath, compiler, `${ compiler }.config.web.js`), pJoin(cwd, `${ compiler }.config.web.js`))
+    fs.copySync(pJoin(nodeAndWebTemplateFolderSrcPath, 'styles', 'style.scss'), pJoin(cwd, 'src', 'frontend', 'styles', 'style.scss'))
   }
   else{ //web
     fs.copySync(pJoin(webTemplateFolderSrcPath, 'index.html'), pJoin(cwd, 'dist', 'index.html'))
     fs.copySync(pJoin(webTemplateFolderSrcPath, compiler, 'index.lsc'), frontendIndexJsWritePath)
     fs.copySync(pJoin(webTemplateFolderSrcPath, compiler, '.babelrc.web.js'), pJoin(cwd, '.babelrc.web.js'))
     fs.copySync(pJoin(webTemplateFolderSrcPath, compiler, `${ compiler }.config.web.js`), pJoin(cwd, `${ compiler }.config.web.js`))
+    fs.copySync(pJoin(nodeAndWebTemplateFolderSrcPath, 'styles', 'style.scss'), pJoin(cwd, 'src', 'styles', 'style.scss'))
   }
 }
 

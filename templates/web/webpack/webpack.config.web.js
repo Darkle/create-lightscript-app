@@ -28,6 +28,14 @@ const webpackOptions = {
           sourceMap: ISDEV
         }
       },
+      {
+        test: [/\.css$/, /\.scss$/, /\.sass$/, /\.styl$/, /\.less$/],
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader'
+        ]
+      }
     ]
   },
   resolve: {
