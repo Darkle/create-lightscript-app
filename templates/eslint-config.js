@@ -1,13 +1,13 @@
 module.exports = {
-  "parser": "@lightscript/eslint-plugin",
-  "plugins": ["@lightscript/eslint-plugin"],
-  "extends": [
+  parser: "@lightscript/eslint-plugin",
+  plugins: ["@lightscript/eslint-plugin"],
+  extends: [
     "eslint:recommended",
     "plugin:@lightscript/recommended"
   ],
-  "parserOptions": {
+  parserOptions: {
     ecmaVersion: 2018,
-    "sourceType": "module"
+    sourceType: "module"
   },
   env: {
     browser: true,

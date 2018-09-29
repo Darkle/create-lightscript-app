@@ -31,14 +31,14 @@ function isExternal(modulePath) {
 }
 
 export default {
-  input: 'src/index.lsc',
+  input: 'src/server/index.lsc',
   plugins: [
     resolve({ extensions: babelRC.extensions }),
     babel(babelRC)
   ],
   external: isExternal,
   output: {
-    file: `src/index.js`,
+    file: `src/server/index.js`,
     format: 'cjs',
     sourcemap: process.env.NODE_ENV !== 'production' ? 'inline' : false
   }

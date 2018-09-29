@@ -13,6 +13,9 @@ const programArgs = new commander.Command(packageJson.name)
   .action(name => {
     projectName = name
   })
+  .option('--node', 'Create a LightScript skeleton for the server')
+  .option('--nodeandweb', 'Create a LightScript skeleton for an app that has both server js and web js')
+  .option('--webpack', 'Use Webpack instead of Rollup')
   .parse(process.argv)
 
 if(typeof projectName === 'undefined') {

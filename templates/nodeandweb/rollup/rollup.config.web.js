@@ -14,7 +14,7 @@ if(!lscPreset) {
 }
 
 export default {
-  input: 'src/index.lsc',
+  input: 'src/frontend/index.lsc',
   plugins: [
     resolve({ extensions: babelRC.extensions }),
     //commonjs plugin needs to be before babel plugin
