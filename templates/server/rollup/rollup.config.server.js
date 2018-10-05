@@ -5,15 +5,21 @@ const path = require('path')
 const srcPath = (path.resolve('./app')).replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
 const srcPathRegex = new RegExp(srcPath)
 
-// Load babelrc
-const babelRC = require('./.babelrc.server.js')
-babelRC.babelrc = false
-babelRC.extensions = [".js", ".lsc"]
-
-// Locate LSC preset
-const lscPreset = babelRC.presets.find(x => x[0] === "@lightscript")
-if(!lscPreset) {
-  throw new Error("Couldn't locate lightscript preset aborting build")
+const babelRC = {
+  presets: [
+    [
+      "@lightscript",
+      {
+        "env": {
+          "targets": {
+            "node": 8
+          }
+        }
+      }
+    ]
+  ],
+  babelrc: false,
+  extensions: [".js", ".lsc"]
 }
 // Attempt to determine if a module is external and should not be rolled into
 // the bundle. Check for presence in source path, presence of "." in module path,

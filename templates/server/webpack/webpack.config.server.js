@@ -42,7 +42,19 @@ const webpackOptions = {
         ],
         loader: 'babel-loader',
         options: {
-          sourceMap: ISDEV
+          sourceMap: ISDEV,
+          presets: [
+            [
+              "@lightscript",
+              {
+                "env": {
+                  "targets": {
+                    "node": 8
+                  }
+                }
+              }
+            ]
+          ]
         }
       },
     ]

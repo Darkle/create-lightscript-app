@@ -4,15 +4,36 @@ import resolve from 'rollup-plugin-node-resolve'
 import postcss from 'rollup-plugin-postcss'
 
 const ISDEV = process.env.NODE_ENV !== 'production'
-// Load babelrc
-const babelRC = require('./.babelrc.web.js')
-babelRC.babelrc = false
-babelRC.extensions = [".js", ".lsc"]
-
-// Locate LSC preset
-const lscPreset = babelRC.presets.find(x => x[0] === "@lightscript")
-if(!lscPreset) {
-  throw new Error("Couldn't locate lightscript preset aborting build")
+const babelRC = {
+  presets: [
+    [
+      "@lightscript",
+      {
+        "env": {
+          targets: { ie: 9 },
+          ignoreBrowserslistConfig: true,
+          useBuiltIns: false,
+          modules: false
+        }
+      }
+    ]
+  ],
+  plugins: [
+    // Polyfill Babel runtime
+    ['@babel/plugin-transform-runtime',
+      {
+        corejs: false,
+        helpers: false,
+        regenerator: true,
+      }
+    ],
+    // Allow the use of generators
+    ['@babel/plugin-transform-regenerator',
+      { async: false }
+    ]
+  ],
+  babelrc: false,
+  extensions: [".js", ".lsc"]
 }
 
 export default {

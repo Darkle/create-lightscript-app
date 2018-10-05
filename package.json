@@ -1,6 +1,6 @@
 {
   "name": "create-lightscript-app",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Create a minimal skeleton for a LightScript app",
   "main": "index.js",
   "scripts": {
